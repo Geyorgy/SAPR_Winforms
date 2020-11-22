@@ -1,0 +1,2 @@
+C:\Users\Gosha\source\repos\SAPR\SAPR\x64\Release\SAPR.MainWindow.resources
+C:\Users\Gosha\source\repos\SAPR\SAPR\x64\Release\SAPR.vcxproj.GenerateResource.cache

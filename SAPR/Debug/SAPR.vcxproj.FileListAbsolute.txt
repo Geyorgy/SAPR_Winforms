@@ -1,0 +1,3 @@
+C:\Users\Gosha\source\repos\SAPR\SAPR\Debug\SAPR.vcxprojAssemblyReference.cache
+C:\Users\Gosha\source\repos\SAPR\SAPR\Debug\SAPR.MainWindow.resources
+C:\Users\Gosha\source\repos\SAPR\SAPR\Debug\SAPR.vcxproj.GenerateResource.cache

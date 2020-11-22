@@ -1,0 +1,12 @@
+﻿  MainWindow.cpp
+C:\Users\Gosha\source\repos\SAPR\SAPR\MainWindow.h(655,45): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Gosha\source\repos\SAPR\SAPR\MainWindow.h(663,116): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Gosha\source\repos\SAPR\SAPR\MainWindow.h(663,106): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Gosha\source\repos\SAPR\SAPR\MainWindow.h(663,84): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Gosha\source\repos\SAPR\SAPR\MainWindow.h(663,64): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Gosha\source\repos\SAPR\SAPR\MainWindow.h(676,59): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Gosha\source\repos\SAPR\SAPR\MainWindow.h(676,34): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Создание кода...
+  MainWindow.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  SAPR.vcxproj -> C:\Users\Gosha\source\repos\SAPR\x64\Release\SAPR.exe
