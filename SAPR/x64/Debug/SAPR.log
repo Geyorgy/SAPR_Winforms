@@ -1,5 +1,3 @@
-﻿  PostProcessor.cpp
-  Processor.cpp
-  Создание кода...
+﻿  Processor.cpp
   Global.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   SAPR.vcxproj -> D:\User\Gosha\Documents\Repos\SAPR\x64\Debug\SAPR.exe

@@ -2,6 +2,7 @@
 #include "Processor.h"
 #include "PostProcessor.h"
 #include <Windows.h>
+#include <string>
 
 using namespace SAPR;
 
@@ -13,6 +14,8 @@ extern double LengthOfConstr;
 extern double** MassOfSticks;
 extern double* MassOfHubLoads;
 extern double* MassOfStickLoads;
+extern bool flagComeFromProcessor;
+extern std::string FilePath;
 
 bool flagTextChangedByNumeric = 0;
 bool flagTextChangedByMinus = 0;
@@ -507,7 +510,8 @@ System::Void SAPR::PreProcessor::îòêðûòüToolStripMenuItem_Click(System::Object^ 
 
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 		if (openFileDialog1->FileName->Length > 0) {
-			StreamReader^ openFile = gcnew StreamReader(openFileDialog1->FileName);
+			DataFileName = openFileDialog1->FileName;
+			StreamReader^ openFile = gcnew StreamReader(DataFileName);
 
 			textBox3->Text = openFile->ReadLine();
 			checkBox1->Checked = System::Convert::ToInt32(openFile->ReadLine());
@@ -538,9 +542,41 @@ System::Void SAPR::PreProcessor::îòêðûòüToolStripMenuItem_Click(System::Object^ 
     return System::Void();
 }
 
+System::Void SAPR::PreProcessor::îòêðûòüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e, String^ DataFileName)
+{
+	if (DataFileName->Length > 0) {
+		StreamReader^ openFile = gcnew StreamReader(DataFileName);
+
+		textBox3->Text = openFile->ReadLine();
+		checkBox1->Checked = System::Convert::ToInt32(openFile->ReadLine());
+		checkBox2->Checked = System::Convert::ToInt32(openFile->ReadLine());
+		for (int i = 0; i < NumberOfSticks; i++) {
+			for (int j = 0; j < 6; j++) {
+				MassOfSticks[i][j] = System::Convert::ToDouble(openFile->ReadLine());
+			}
+		}
+		for (int i = 0; i < NumberOfSticks; i++) {
+			MassOfStickLoads[i] = System::Convert::ToDouble(openFile->ReadLine());
+		}
+		for (int i = 0; i < NumberOfSticks + 1; i++) {
+			MassOfHubLoads[i] = System::Convert::ToDouble(openFile->ReadLine());
+		}
+
+		openFile->Close();
+
+		numericUpDown1->Value = 2;
+		numericUpDown1->Value = 1;
+		numericUpDown2->Value = 2;
+		numericUpDown2->Value = 1;
+		numericUpDown3->Value = 2;
+		numericUpDown3->Value = 1;
+	}
+	return System::Void();
+}
+
 System::Void SAPR::PreProcessor::ñîõðàíèòüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	saveFileDialog1->FileName = "SAPRDataProcessor";
+	saveFileDialog1->FileName = "SAPRDataPreProcessor";
 	saveFileDialog1->Filter = "Text Files|*.txt";
 
 	if (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
@@ -572,6 +608,9 @@ System::Void SAPR::PreProcessor::ïåðåéòèToolStripMenuItem_Click(System::Object^ 
 {
 	this->Hide();
 	SAPR::Processor Processor;
+	if (openFileDialog1->FileName != "SAPRDataPreProcessor.txt") {
+		Processor.DataFileName = openFileDialog1->FileName;
+	}
 	Processor.ShowDialog();
 	this->Close();
 	return System::Void();
@@ -583,5 +622,25 @@ System::Void SAPR::PreProcessor::ïåðåéòèToolStripMenuItem1_Click(System::Object^
 	SAPR::PostProcessor PostProcessor;
 	PostProcessor.ShowDialog();
 	this->Close();
+	return System::Void();
+}
+
+System::Void SAPR::PreProcessor::PreProcessor_Load(System::Object^ sender, System::EventArgs^ e)
+{
+	this->textBox3->Text = System::Convert::ToString(NumberOfSticks);
+
+	if (this->DataFileName != nullptr) {
+		SAPR::PreProcessor::îòêðûòüToolStripMenuItem_Click(this, e, this->DataFileName);
+	}
+
+
+	if (numericUpDown1->Enabled) {
+		numericUpDown1->Value = 2;
+		numericUpDown1->Value = 1;
+		numericUpDown2->Value = 2;
+		numericUpDown2->Value = 1;
+		numericUpDown3->Value = 2;
+		numericUpDown3->Value = 1;
+	}
 	return System::Void();
 }

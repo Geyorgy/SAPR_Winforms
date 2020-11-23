@@ -1,6 +1,7 @@
 #include "PreProcessor.h"
 #include "Processor.h"
 #include "PostProcessor.h"
+#include <string>
 
 using namespace SAPR;
 
@@ -9,6 +10,8 @@ extern double LengthOfConstr;
 extern double** MassOfSticks;
 extern double* MassOfHubLoads;
 extern double* MassOfStickLoads;
+extern bool flagComeFromProcessor;
+extern std::string FilePath;
 
 System::Void SAPR::Processor::timer1_Tick(System::Object^ sender, System::EventArgs^ e)
 {
@@ -21,7 +24,9 @@ System::Void SAPR::Processor::îòêðûòüÔàéëToolStripMenuItem_Click(System::Object^
 
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 		if (openFileDialog1->FileName->Length > 0) {
-			StreamReader^ openFile = gcnew StreamReader(openFileDialog1->FileName);
+
+			DataFileName = openFileDialog1->FileName;
+			StreamReader^ openFile = gcnew StreamReader(DataFileName);
 
 			NumberOfSticks = System::Convert::ToInt32(openFile->ReadLine());
 			openFile->ReadLine();
@@ -55,6 +60,7 @@ System::Void SAPR::Processor::ïåðåéòèToolStripMenuItem_Click(System::Object^ sen
 {
 	this->Hide();
 	SAPR::PreProcessor PreProcessor;
+	PreProcessor.DataFileName = DataFileName;
 	PreProcessor.ShowDialog();
 	this->Close();
 	return System::Void();
@@ -66,5 +72,25 @@ System::Void SAPR::Processor::ïåðåéòèToolStripMenuItem1_Click(System::Object^ se
 	SAPR::PostProcessor PostProcessor;
 	PostProcessor.ShowDialog();
 	this->Close();
+	return System::Void();
+}
+
+System::Void SAPR::Processor::button1_Click(System::Object^ sender, System::EventArgs^ e)
+{	
+
+	for (int i = 0; i < NumberOfSticks; i++) {
+		for (int j = 2; j < 6; j++) {
+			if (MassOfSticks[i][j] == 0) {
+				if (MessageBox::Show("Êàê ìèíèìóì îäèí èç ïàðàìåòðîâ " + (i + 1) + "-ãî ñòåðæíÿ íå çàäàí.  Ïåðåéòè â ïðåïðîöåññîð äëÿ ðåäàêòèðîâàíèÿ?", "Îøèáêà", MessageBoxButtons::OKCancel, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::OK) {
+					this->Hide();
+					SAPR::PreProcessor PreProcessor;
+					PreProcessor.DataFileName = DataFileName;
+					PreProcessor.ShowDialog();
+					this->Close();
+					return System::Void();
+				}
+			}
+		}
+	}
 	return System::Void();
 }

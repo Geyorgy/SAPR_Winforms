@@ -22,6 +22,8 @@ namespace SAPR {
 	public ref class PreProcessor : public System::Windows::Forms::Form
 	{
 	public:
+		String^ DataFileName;
+	public:
 		PreProcessor(void)
 		{
 			InitializeComponent();
@@ -507,14 +509,14 @@ namespace SAPR {
 			// îòêğûòüToolStripMenuItem
 			// 
 			this->îòêğûòüToolStripMenuItem->Name = L"îòêğûòüToolStripMenuItem";
-			this->îòêğûòüToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->îòêğûòüToolStripMenuItem->Size = System::Drawing::Size(165, 22);
 			this->îòêğûòüToolStripMenuItem->Text = L"Îòêğûòü ôàéë";
 			this->îòêğûòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &PreProcessor::îòêğûòüToolStripMenuItem_Click);
 			// 
 			// ñîõğàíèòüToolStripMenuItem
 			// 
 			this->ñîõğàíèòüToolStripMenuItem->Name = L"ñîõğàíèòüToolStripMenuItem";
-			this->ñîõğàíèòüToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->ñîõğàíèòüToolStripMenuItem->Size = System::Drawing::Size(165, 22);
 			this->ñîõğàíèòüToolStripMenuItem->Text = L"Ñîõğàíèòü ôàéë";
 			this->ñîõğàíèòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &PreProcessor::ñîõğàíèòüToolStripMenuItem_Click);
 			// 
@@ -528,7 +530,7 @@ namespace SAPR {
 			// ïåğåéòèToolStripMenuItem
 			// 
 			this->ïåğåéòèToolStripMenuItem->Name = L"ïåğåéòèToolStripMenuItem";
-			this->ïåğåéòèToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->ïåğåéòèToolStripMenuItem->Size = System::Drawing::Size(121, 22);
 			this->ïåğåéòèToolStripMenuItem->Text = L"Ïåğåéòè";
 			this->ïåğåéòèToolStripMenuItem->Click += gcnew System::EventHandler(this, &PreProcessor::ïåğåéòèToolStripMenuItem_Click);
 			// 
@@ -542,13 +544,13 @@ namespace SAPR {
 			// ïåğåéòèToolStripMenuItem1
 			// 
 			this->ïåğåéòèToolStripMenuItem1->Name = L"ïåğåéòèToolStripMenuItem1";
-			this->ïåğåéòèToolStripMenuItem1->Size = System::Drawing::Size(180, 22);
+			this->ïåğåéòèToolStripMenuItem1->Size = System::Drawing::Size(121, 22);
 			this->ïåğåéòèToolStripMenuItem1->Text = L"Ïåğåéòè";
 			this->ïåğåéòèToolStripMenuItem1->Click += gcnew System::EventHandler(this, &PreProcessor::ïåğåéòèToolStripMenuItem1_Click);
 			// 
 			// openFileDialog1
 			// 
-			this->openFileDialog1->FileName = L"SAPRDataProcessor.txt";
+			this->openFileDialog1->FileName = L"SAPRDataPreProcessor.txt";
 			this->openFileDialog1->RestoreDirectory = true;
 			// 
 			// saveFileDialog1
@@ -608,6 +610,7 @@ namespace SAPR {
 			this->Name = L"PreProcessor";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"ÑÀÏĞ";
+			this->Load += gcnew System::EventHandler(this, &PreProcessor::PreProcessor_Load);
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -647,11 +650,14 @@ namespace SAPR {
 			
 	private: System::Void îòêğûòüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 
+	private: System::Void îòêğûòüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e, String^ DataFileName);
+
 	private: System::Void ñîõğàíèòüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void ïåğåéòèToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void ïåğåéòèToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e);
 
+	private: System::Void PreProcessor_Load(System::Object^ sender, System::EventArgs^ e);
 };
 }

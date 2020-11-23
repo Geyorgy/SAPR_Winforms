@@ -19,9 +19,13 @@ Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c5619
 Class SAPR.PreProcessor: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.String DataFileName : Public
 Class SAPR.Processor: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.String DataFileName : Public
 Class SAPR.PostProcessor: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

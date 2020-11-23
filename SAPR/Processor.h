@@ -16,6 +16,8 @@ namespace SAPR {
 	public ref class Processor : public System::Windows::Forms::Form
 	{
 	public:
+		String^ DataFileName = "SAPRDataPreProcessor.txt";
+	public:
 		Processor(void)
 		{
 			InitializeComponent();
@@ -44,6 +46,7 @@ namespace SAPR {
 	private: System::Windows::Forms::ToolStripMenuItem^ ïîñòïğîöåññîğToolStripMenuItem;
 	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
 	private: System::Windows::Forms::ToolStripMenuItem^ ïåğåéòèToolStripMenuItem1;
+	private: System::Windows::Forms::Button^ button1;
 
 
 	protected:
@@ -70,8 +73,9 @@ namespace SAPR {
 			this->ïğîöåññîğToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->îòêğûòüÔàéëToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ïîñòïğîöåññîğToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->ïåğåéòèToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -97,7 +101,7 @@ namespace SAPR {
 			// ïåğåéòèToolStripMenuItem
 			// 
 			this->ïåğåéòèToolStripMenuItem->Name = L"ïåğåéòèToolStripMenuItem";
-			this->ïåğåéòèToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->ïåğåéòèToolStripMenuItem->Size = System::Drawing::Size(121, 22);
 			this->ïåğåéòèToolStripMenuItem->Text = L"Ïåğåéòè";
 			this->ïåğåéòèToolStripMenuItem->Click += gcnew System::EventHandler(this, &Processor::ïåğåéòèToolStripMenuItem_Click);
 			// 
@@ -112,7 +116,7 @@ namespace SAPR {
 			// îòêğûòüÔàéëToolStripMenuItem
 			// 
 			this->îòêğûòüÔàéëToolStripMenuItem->Name = L"îòêğûòüÔàéëToolStripMenuItem";
-			this->îòêğûòüÔàéëToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->îòêğûòüÔàéëToolStripMenuItem->Size = System::Drawing::Size(153, 22);
 			this->îòêğûòüÔàéëToolStripMenuItem->Text = L"Îòêğûòü ôàéë";
 			this->îòêğûòüÔàéëToolStripMenuItem->Click += gcnew System::EventHandler(this, &Processor::îòêğûòüÔàéëToolStripMenuItem_Click);
 			// 
@@ -123,16 +127,26 @@ namespace SAPR {
 			this->ïîñòïğîöåññîğToolStripMenuItem->Size = System::Drawing::Size(106, 20);
 			this->ïîñòïğîöåññîğToolStripMenuItem->Text = L"Ïîñòïğîöåññîğ";
 			// 
+			// ïåğåéòèToolStripMenuItem1
+			// 
+			this->ïåğåéòèToolStripMenuItem1->Name = L"ïåğåéòèToolStripMenuItem1";
+			this->ïåğåéòèToolStripMenuItem1->Size = System::Drawing::Size(121, 22);
+			this->ïåğåéòèToolStripMenuItem1->Text = L"Ïåğåéòè";
+			this->ïåğåéòèToolStripMenuItem1->Click += gcnew System::EventHandler(this, &Processor::ïåğåéòèToolStripMenuItem1_Click);
+			// 
 			// openFileDialog1
 			// 
 			this->openFileDialog1->FileName = L"openFileDialog1";
 			// 
-			// ïåğåéòèToolStripMenuItem1
+			// button1
 			// 
-			this->ïåğåéòèToolStripMenuItem1->Name = L"ïåğåéòèToolStripMenuItem1";
-			this->ïåğåéòèToolStripMenuItem1->Size = System::Drawing::Size(180, 22);
-			this->ïåğåéòèToolStripMenuItem1->Text = L"Ïåğåéòè";
-			this->ïåğåéòèToolStripMenuItem1->Click += gcnew System::EventHandler(this, &Processor::ïåğåéòèToolStripMenuItem1_Click);
+			this->button1->Location = System::Drawing::Point(286, 365);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(124, 33);
+			this->button1->TabIndex = 1;
+			this->button1->Text = L"Ğàññ÷èòàòü";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Processor::button1_Click);
 			// 
 			// Processor
 			// 
@@ -140,6 +154,7 @@ namespace SAPR {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Silver;
 			this->ClientSize = System::Drawing::Size(772, 597);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->menuStrip1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MainMenuStrip = this->menuStrip1;
@@ -160,5 +175,8 @@ namespace SAPR {
 	private: System::Void ïåğåéòèToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void ïåğåéòèToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e);
-};
+
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
+
+	};
 }

@@ -5,4 +5,4 @@ double LengthOfConstr;
 double** MassOfSticks;
 double* MassOfHubLoads;
 double* MassOfStickLoads;
-//char FilePath[100];
+bool flagComeFromProcessor;
