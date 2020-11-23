@@ -10,12 +10,6 @@ namespace SAPR {
 	using namespace System::Drawing;
 	using namespace System::IO;
 
-	int NumberOfSticks = 0;
-	double LengthOfConstr;
-	double** MassOfSticks;
-	double* MassOfHubLoads;
-	double* MassOfStickLoads;
-
 	/// <summary>
 	/// Ñâîäêà äëÿ Processor
 	/// </summary>
@@ -49,6 +43,8 @@ namespace SAPR {
 	private: System::Windows::Forms::ToolStripMenuItem^ îòêğûòüÔàéëToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ ïîñòïğîöåññîğToolStripMenuItem;
 	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
+	private: System::Windows::Forms::ToolStripMenuItem^ ïåğåéòèToolStripMenuItem1;
+
 
 	protected:
 
@@ -67,6 +63,7 @@ namespace SAPR {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Processor::typeid));
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->ïğåïğîöåññîğToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ïåğåéòèToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -74,6 +71,7 @@ namespace SAPR {
 			this->îòêğûòüÔàéëToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ïîñòïğîöåññîğToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->ïåğåéòèToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -99,11 +97,13 @@ namespace SAPR {
 			// ïåğåéòèToolStripMenuItem
 			// 
 			this->ïåğåéòèToolStripMenuItem->Name = L"ïåğåéòèToolStripMenuItem";
-			this->ïåğåéòèToolStripMenuItem->Size = System::Drawing::Size(121, 22);
+			this->ïåğåéòèToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->ïåğåéòèToolStripMenuItem->Text = L"Ïåğåéòè";
+			this->ïåğåéòèToolStripMenuItem->Click += gcnew System::EventHandler(this, &Processor::ïåğåéòèToolStripMenuItem_Click);
 			// 
 			// ïğîöåññîğToolStripMenuItem
 			// 
+			this->ïğîöåññîğToolStripMenuItem->BackColor = System::Drawing::SystemColors::InactiveCaption;
 			this->ïğîöåññîğToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->îòêğûòüÔàéëToolStripMenuItem });
 			this->ïğîöåññîğToolStripMenuItem->Name = L"ïğîöåññîğToolStripMenuItem";
 			this->ïğîöåññîğToolStripMenuItem->Size = System::Drawing::Size(81, 20);
@@ -118,6 +118,7 @@ namespace SAPR {
 			// 
 			// ïîñòïğîöåññîğToolStripMenuItem
 			// 
+			this->ïîñòïğîöåññîğToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->ïåğåéòèToolStripMenuItem1 });
 			this->ïîñòïğîöåññîğToolStripMenuItem->Name = L"ïîñòïğîöåññîğToolStripMenuItem";
 			this->ïîñòïğîöåññîğToolStripMenuItem->Size = System::Drawing::Size(106, 20);
 			this->ïîñòïğîöåññîğToolStripMenuItem->Text = L"Ïîñòïğîöåññîğ";
@@ -126,15 +127,25 @@ namespace SAPR {
 			// 
 			this->openFileDialog1->FileName = L"openFileDialog1";
 			// 
+			// ïåğåéòèToolStripMenuItem1
+			// 
+			this->ïåğåéòèToolStripMenuItem1->Name = L"ïåğåéòèToolStripMenuItem1";
+			this->ïåğåéòèToolStripMenuItem1->Size = System::Drawing::Size(180, 22);
+			this->ïåğåéòèToolStripMenuItem1->Text = L"Ïåğåéòè";
+			this->ïåğåéòèToolStripMenuItem1->Click += gcnew System::EventHandler(this, &Processor::ïåğåéòèToolStripMenuItem1_Click);
+			// 
 			// Processor
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::Silver;
 			this->ClientSize = System::Drawing::Size(772, 597);
 			this->Controls->Add(this->menuStrip1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"Processor";
-			this->Text = L"Processor";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			this->Text = L"ÑÀÏĞ";
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
@@ -142,41 +153,12 @@ namespace SAPR {
 
 		}
 #pragma endregion
-	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e);
 
-	}
-	private: System::Void îòêğûòüÔàéëToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-		openFileDialog1->Filter = "Text Files|*.txt";
+	private: System::Void îòêğûòüÔàéëToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 
-		if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
-			if (openFileDialog1->FileName->Length > 0) {
-				StreamReader^ openFile = gcnew StreamReader(openFileDialog1->FileName);
+	private: System::Void ïåğåéòèToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 
-				NumberOfSticks = System::Convert::ToInt32(openFile->ReadLine());
-				openFile->ReadLine();
-				openFile->ReadLine();
-
-				MassOfSticks = new double* [NumberOfSticks];
-				for (int i = 0; i < NumberOfSticks; i++) {
-					MassOfSticks[i] = new double[6];
-					for (int j = 0; j < 6; j++) {
-						MassOfSticks[i][j] = System::Convert::ToDouble(openFile->ReadLine());
-					}
-				}
-
-				MassOfStickLoads = new double[NumberOfSticks];
-				for (int i = 0; i < NumberOfSticks; i++) {
-					MassOfStickLoads[i] = System::Convert::ToDouble(openFile->ReadLine());
-				}
-
-				MassOfHubLoads = new double[NumberOfSticks + 1];
-				for (int i = 0; i < NumberOfSticks + 1; i++) {
-					MassOfHubLoads[i] = System::Convert::ToDouble(openFile->ReadLine());
-				}
-
-				openFile->Close();
-			}
-		}
-	}
+	private: System::Void ïåğåéòèToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

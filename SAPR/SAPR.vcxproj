@@ -118,6 +118,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Global.cpp" />
     <ClCompile Include="PreProcessor.cpp" />
     <ClCompile Include="PostProcessor.cpp" />
     <ClCompile Include="Processor.cpp" />

@@ -1,4 +1,6 @@
+  SAPR.PostProcessor.resources - Embedded, ContainedInManifestFile, 
   SAPR.PreProcessor.resources - Embedded, ContainedInManifestFile, 
+  SAPR.Processor.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly SAPR, Version=0.0.*, Culture=Инвариантный язык (Инвариантная страна): 
 	hash=SHA1, flags=PublicKey
@@ -17,9 +19,9 @@ Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c5619
 Class SAPR.PreProcessor: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-Class SAPR.PostProcessor: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+Class SAPR.Processor: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-Class SAPR.Processor: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+Class SAPR.PostProcessor: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
