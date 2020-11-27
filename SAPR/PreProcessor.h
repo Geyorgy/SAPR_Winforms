@@ -11,11 +11,6 @@ namespace SAPR {
 	using namespace System::IO;
 
 
-
-
-
-
-
 	/// <summary>
 	/// Сводка для CAD
 	/// </summary>
@@ -23,6 +18,7 @@ namespace SAPR {
 	{
 	public:
 		String^ DataFileName;
+		bool flagComeFromOutside = 0;
 	public:
 		PreProcessor(void)
 		{
@@ -40,16 +36,6 @@ namespace SAPR {
 				delete components;
 			}
 		}
-
-
-
-
-
-
-
-
-
-
 
 
 	private: System::Windows::Forms::Button^ button1;
@@ -674,5 +660,5 @@ namespace SAPR {
 
 	private: System::Void checkBox2_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 
-};
+	};
 }

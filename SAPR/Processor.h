@@ -47,6 +47,12 @@ namespace SAPR {
 	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
 	private: System::Windows::Forms::ToolStripMenuItem^ ïåğåéòèToolStripMenuItem1;
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::RichTextBox^ RTBLogs;
+	private: System::Windows::Forms::RichTextBox^ RTBFile;
+
+
+
+
 
 
 	protected:
@@ -76,6 +82,8 @@ namespace SAPR {
 			this->ïåğåéòèToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->RTBLogs = (gcnew System::Windows::Forms::RichTextBox());
+			this->RTBFile = (gcnew System::Windows::Forms::RichTextBox());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -140,13 +148,33 @@ namespace SAPR {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(286, 365);
+			this->button1->Location = System::Drawing::Point(20, 366);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(124, 33);
+			this->button1->Size = System::Drawing::Size(734, 219);
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Ğàññ÷èòàòü";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Processor::button1_Click);
+			// 
+			// RTBLogs
+			// 
+			this->RTBLogs->BackColor = System::Drawing::Color::Silver;
+			this->RTBLogs->Location = System::Drawing::Point(20, 43);
+			this->RTBLogs->Name = L"RTBLogs";
+			this->RTBLogs->ReadOnly = true;
+			this->RTBLogs->Size = System::Drawing::Size(330, 317);
+			this->RTBLogs->TabIndex = 2;
+			this->RTBLogs->Text = L"";
+			// 
+			// RTBFile
+			// 
+			this->RTBFile->BackColor = System::Drawing::SystemColors::Control;
+			this->RTBFile->Location = System::Drawing::Point(424, 43);
+			this->RTBFile->Name = L"RTBFile";
+			this->RTBFile->ReadOnly = true;
+			this->RTBFile->Size = System::Drawing::Size(330, 317);
+			this->RTBFile->TabIndex = 3;
+			this->RTBFile->Text = L"";
 			// 
 			// Processor
 			// 
@@ -154,6 +182,8 @@ namespace SAPR {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Silver;
 			this->ClientSize = System::Drawing::Size(772, 597);
+			this->Controls->Add(this->RTBFile);
+			this->Controls->Add(this->RTBLogs);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->menuStrip1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
@@ -161,6 +191,7 @@ namespace SAPR {
 			this->Name = L"Processor";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"ÑÀÏĞ";
+			this->Load += gcnew System::EventHandler(this, &Processor::Processor_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
@@ -168,7 +199,6 @@ namespace SAPR {
 
 		}
 #pragma endregion
-	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void îòêğûòüÔàéëToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 
@@ -178,5 +208,7 @@ namespace SAPR {
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
 
-	};
+	private: System::Void Processor_Load(System::Object^ sender, System::EventArgs^ e);
+
+};
 }

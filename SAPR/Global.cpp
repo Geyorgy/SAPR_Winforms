@@ -5,5 +5,5 @@ double LengthOfConstr;
 double** MassOfSticks;
 double* MassOfHubLoads;
 double* MassOfStickLoads;
-bool LeftPillar = 0;
-bool RightPillar = 0;
+int LeftPillar = 0;
+int RightPillar = 0;

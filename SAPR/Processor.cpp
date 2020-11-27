@@ -9,16 +9,14 @@ extern double LengthOfConstr;
 extern double** MassOfSticks;
 extern double* MassOfHubLoads;
 extern double* MassOfStickLoads;
-extern bool LeftPillar;
-extern bool RightPillar;
-
-System::Void SAPR::Processor::timer1_Tick(System::Object^ sender, System::EventArgs^ e)
-{
-	return System::Void();
-}
+extern int LeftPillar;
+extern int RightPillar;
 
 System::Void SAPR::Processor::открытьФайлToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
+	RTBFile->Clear();
+	RTBLogs->Clear();
+
 	openFileDialog1->Filter = "Text Files|*.txt";
 
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
@@ -52,6 +50,55 @@ System::Void SAPR::Processor::открытьФайлToolStripMenuItem_Click(System::Object^
 			openFile->Close();
 		}
 	}
+
+	RTBLogs->AppendText("Данные введены\n");
+	RTBFile->AppendText("Количество стержней: " + System::Convert::ToString(NumberOfSticks) + "\n\n");
+
+	if (LeftPillar)
+	{
+		RTBFile->AppendText("Опора слева\n");
+	}
+
+	if (RightPillar)
+	{
+		RTBFile->AppendText("Опора справа\n");
+	}
+
+	RTBFile->AppendText("\n");
+
+	RTBFile->AppendText("Характеристика стержней\n");
+	for (int i = 0; i < NumberOfSticks; i++) {
+		RTBFile->AppendText("Стержень №" + (i + 1) + "\n");
+		RTBFile->AppendText("Длина стержня: " + MassOfSticks[i][2] + " L\n");
+		RTBFile->AppendText("Площадь поперечного сечения: " + MassOfSticks[i][3] + " A\n");
+		RTBFile->AppendText("Допускаемое напряжение: " + MassOfSticks[i][4] + " МПа\n");
+		RTBFile->AppendText("Модуль успругости: " + MassOfSticks[i][5] + " МПа\n\n");
+	}
+
+	RTBFile->AppendText("Распределенные нагрузки\n");
+	for (int i = 0; i < NumberOfSticks; i++) {
+		if (MassOfStickLoads[i])
+			RTBFile->AppendText("Стержень №" + (i + 1) + ": " + MassOfStickLoads[i] + " q\n");
+	}
+	RTBFile->AppendText("\n");
+
+	RTBFile->AppendText("Сосредоточенные нагрузки\n");
+	for (int i = 0; i < NumberOfSticks + 1; i++) {
+		if (MassOfHubLoads[i])
+			RTBFile->AppendText("Глобальный узел №" + (i + 1) + ": " + MassOfHubLoads[i] + " qL\n");
+	}
+
+	for (int i = 0; i < NumberOfSticks; i++) {
+		for (int j = 0; j < 6; j++)
+		{
+			if (MassOfSticks[i][j] == 0) {
+				RTBLogs->AppendText("Обнаружены некорректные данные\nПожалуйста, устраните ошибки, прежде чем продолжить расчет\n");
+				return System::Void();
+			}
+		}
+	}
+	RTBLogs->AppendText("Ошибок не найдено\nОжидание дальнейшей команды...\n\n");
+
 	return System::Void();
 }
 
@@ -60,6 +107,7 @@ System::Void SAPR::Processor::перейтиToolStripMenuItem_Click(System::Object^ sen
 	this->Hide();
 	SAPR::PreProcessor PreProcessor;
 	PreProcessor.DataFileName = DataFileName;
+	PreProcessor.flagComeFromOutside = 1;
 	PreProcessor.ShowDialog();
 	this->Close();
 	return System::Void();
@@ -84,12 +132,70 @@ System::Void SAPR::Processor::button1_Click(System::Object^ sender, System::Even
 					this->Hide();
 					SAPR::PreProcessor PreProcessor;
 					PreProcessor.DataFileName = DataFileName;
+					PreProcessor.flagComeFromOutside = 1;
 					PreProcessor.ShowDialog();
 					this->Close();
 					return System::Void();
 				}
 			}
 		}
+	}
+	return System::Void();
+}
+
+System::Void SAPR::Processor::Processor_Load(System::Object^ sender, System::EventArgs^ e)
+{
+	if (NumberOfSticks == 0){
+		RTBLogs->AppendText("Ожидание ввода данных...\n");
+	}
+	else{
+		RTBLogs->AppendText("Данные введены\n");
+		RTBFile->AppendText("Количество стержней: " + System::Convert::ToString(NumberOfSticks) + "\n\n");
+
+		if (LeftPillar)
+		{
+			RTBFile->AppendText("Опора слева\n");
+		}
+
+		if (RightPillar)
+		{
+			RTBFile->AppendText("Опора справа\n");
+		}
+
+		RTBFile->AppendText("\n");
+
+		RTBFile->AppendText("Характеристика стержней\n");
+		for (int i = 0; i < NumberOfSticks; i++) {
+			RTBFile->AppendText("Стержень №" + (i + 1) + "\n");
+			RTBFile->AppendText("Длина стержня: " + MassOfSticks[i][2] + " L\n");
+			RTBFile->AppendText("Площадь поперечного сечения: " + MassOfSticks[i][3] + " A\n");
+			RTBFile->AppendText("Допускаемое напряжение: " + MassOfSticks[i][4] + " МПа\n");
+			RTBFile->AppendText("Модуль успругости: " + MassOfSticks[i][5] + " МПа\n\n");
+		}
+
+		RTBFile->AppendText("Распределенные нагрузки\n");
+		for (int i = 0; i < NumberOfSticks; i++) {
+			if (MassOfStickLoads[i])
+				RTBFile->AppendText("Стержень №" + (i + 1) + ": " + MassOfStickLoads[i] + " q\n");
+		}
+		RTBFile->AppendText("\n");
+
+		RTBFile->AppendText("Сосредоточенные нагрузки\n");
+		for (int i = 0; i < NumberOfSticks + 1; i++) {
+			if (MassOfHubLoads[i])
+				RTBFile->AppendText("Глобальный узел №" + (i + 1) + ": " + MassOfHubLoads[i] + " qL\n");
+		}
+
+		for (int i = 0; i < NumberOfSticks; i++){
+			for (int j = 0; j < 6; j++)
+			{
+				if (MassOfSticks[i][j] == 0) {
+					RTBLogs->AppendText("Обнаружены некорректные данные\nПожалуйста, устраните ошибки, прежде чем продолжить расчет\n");
+					return System::Void();
+				}
+			}
+		}
+		RTBLogs->AppendText("Ошибок не найдено\nОжидание дальнейшей команды...\n\n");
 	}
 	return System::Void();
 }

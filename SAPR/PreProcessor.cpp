@@ -5,7 +5,6 @@
 
 using namespace SAPR;
 
-
 const int LPixel = 120;
 
 extern int NumberOfSticks;
@@ -13,8 +12,8 @@ extern double LengthOfConstr;
 extern double** MassOfSticks;
 extern double* MassOfHubLoads;
 extern double* MassOfStickLoads;
-extern bool LeftPillar;
-extern bool RightPillar;
+extern int LeftPillar;
+extern int RightPillar;
 
 bool flagTextChangedByNumeric = 0;
 bool flagTextChangedByMinus = 0;
@@ -298,21 +297,24 @@ System::Void SAPR::PreProcessor::textBox3_TextChanged(System::Object^ sender, Sy
 	NumberOfSticks = System::Convert::ToInt32(textBox3->Text);
 
 	numericUpDown3->Maximum = NumberOfSticks;
+	if (!flagComeFromOutside) {
+		MassOfSticks = new double* [NumberOfSticks];
+		for (int i = 0; i < NumberOfSticks; i++) {
+			MassOfSticks[i] = new double[6];
+			for (int j = 0; j < 6; j++)
+				MassOfSticks[i][j] = 0;
+		}
 
-	MassOfSticks = new double* [NumberOfSticks];
-	for (int i = 0; i < NumberOfSticks; i++) {
-		MassOfSticks[i] = new double[6];
-		for (int j = 0; j < 6; j++)
-			MassOfSticks[i][j] = 0;
+		MassOfStickLoads = new double[NumberOfSticks];
+		for (int i = 0; i < NumberOfSticks; i++)
+			MassOfStickLoads[i] = 0;
+
+		MassOfHubLoads = new double[NumberOfSticks + 1];
+		for (int i = 0; i < NumberOfSticks + 1; i++)
+			MassOfHubLoads[i] = 0;
+
+		this->DataFileName = "SAPRDataPreProcessor.txt";
 	}
-
-	MassOfStickLoads = new double[NumberOfSticks];
-	for (int i = 0; i < NumberOfSticks; i++)
-		MassOfStickLoads[i] = 0;
-
-	MassOfHubLoads = new double[NumberOfSticks + 1];
-	for (int i = 0; i < NumberOfSticks + 1; i++)
-		MassOfHubLoads[i] = 0;
 
 	numericUpDown1->Maximum = NumberOfSticks;
 	numericUpDown2->Maximum = NumberOfSticks + 1;
@@ -327,6 +329,8 @@ System::Void SAPR::PreProcessor::textBox3_TextChanged(System::Object^ sender, Sy
 	numericUpDown1->Value = 1;
 	numericUpDown2->Value = 1;
 	numericUpDown3->Value = 1;
+
+	flagComeFromOutside = 0;
 	return System::Void();
 }
 
@@ -373,6 +377,11 @@ System::Void SAPR::PreProcessor::textBox1_TextChanged(System::Object^ sender, Sy
 	LengthOfConstr = 0;
 	for (int i = 0; i < NumberOfSticks; i++)
 		LengthOfConstr += MassOfSticks[i][2] * LPixel;
+
+	if (!flagComeFromOutside){
+	this->DataFileName = "SAPRDataPreProcessor.txt";
+	}
+
 	return System::Void();
 }
 
@@ -401,6 +410,10 @@ System::Void SAPR::PreProcessor::textBox2_TextChanged(System::Object^ sender, Sy
 
 	MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][1] = 100 - (12 + System::Convert::ToDouble(textBox2->Text) * 9);
 	MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][3] = System::Convert::ToDouble(textBox2->Text);
+
+	if (!flagComeFromOutside) {
+		this->DataFileName = "SAPRDataPreProcessor.txt";
+	}
 	return System::Void();
 }
 
@@ -439,6 +452,10 @@ System::Void SAPR::PreProcessor::textBox4_TextChanged(System::Object^ sender, Sy
 	}
 
 	MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][4] = System::Convert::ToDouble(textBox4->Text);
+
+	if (!flagComeFromOutside) {
+		this->DataFileName = "SAPRDataPreProcessor.txt";
+	}
 	return System::Void();
 }
 
@@ -458,15 +475,19 @@ System::Void SAPR::PreProcessor::textBox5_TextChanged(System::Object^ sender, Sy
 
 	if (textBox5->Text == "0") {
 		flagTextChangedByMinus = 0;
-		flagTextChangedByNumeric = 0;
 		return;
 	}
+		flagTextChangedByNumeric = 0;
 
 	if (textBox5->Text == System::String::Empty) {
 		return;
 	}
 
 	MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][5] = System::Convert::ToDouble(textBox5->Text);
+
+	if (!flagComeFromOutside) {
+		this->DataFileName = "SAPRDataPreProcessor.txt";
+	}
 	return System::Void();
 }
 
@@ -477,6 +498,11 @@ System::Void SAPR::PreProcessor::textBox6_TextChanged(System::Object^ sender, Sy
 	}
 
 	MassOfStickLoads[System::Convert::ToInt32(numericUpDown1->Value) - 1] = System::Convert::ToDouble(textBox6->Text);
+
+	if (!flagComeFromOutside) {
+		this->DataFileName = "SAPRDataPreProcessor.txt";
+	}
+
 	return System::Void();
 }
 
@@ -487,6 +513,11 @@ System::Void SAPR::PreProcessor::textBox7_TextChanged(System::Object^ sender, Sy
 	}
 
 	MassOfHubLoads[System::Convert::ToInt32(numericUpDown2->Value) - 1] = System::Convert::ToDouble(textBox7->Text);
+
+	if (!flagComeFromOutside) {
+		this->DataFileName = "SAPRDataPreProcessor.txt";
+	}
+
 	return System::Void();
 }
 
@@ -528,12 +559,12 @@ System::Void SAPR::PreProcessor::îòêðûòüToolStripMenuItem_Click(System::Object^ 
 
 			openFile->Close();
 
-			numericUpDown1->Value = 2;
-			numericUpDown1->Value = 1;
-			numericUpDown2->Value = 2;
-			numericUpDown2->Value = 1;
-			numericUpDown3->Value = 2;
-			numericUpDown3->Value = 1;
+			textBox1->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][2]);
+			textBox2->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][3]);
+			textBox4->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][4]);
+			textBox5->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][5]);
+			textBox6->Text = System::Convert::ToString(MassOfStickLoads[System::Convert::ToInt32(numericUpDown1->Value) - 1]);
+			textBox7->Text = System::Convert::ToString(MassOfHubLoads[System::Convert::ToInt32(numericUpDown2->Value) - 1]);
 		}
 	}
 
@@ -566,6 +597,8 @@ System::Void SAPR::PreProcessor::îòêðûòüToolStripMenuItem_Click(System::Object^ 
 		textBox2->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][3]);
 		textBox4->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][4]);
 		textBox5->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][5]);
+		textBox6->Text = System::Convert::ToString(MassOfStickLoads[System::Convert::ToInt32(numericUpDown1->Value) - 1]);
+		textBox7->Text = System::Convert::ToString(MassOfHubLoads[System::Convert::ToInt32(numericUpDown2->Value) - 1]);
 	}
 	return System::Void();
 }
@@ -632,10 +665,15 @@ System::Void SAPR::PreProcessor::PreProcessor_Load(System::Object^ sender, Syste
 
 
 	if (numericUpDown3->Enabled) {
+		checkBox1->Checked = LeftPillar;
+		checkBox2->Checked = RightPillar;
+
 		textBox1->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][2]);
 		textBox2->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][3]);
 		textBox4->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][4]);
 		textBox5->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][5]);
+		textBox6->Text = System::Convert::ToString(MassOfStickLoads[System::Convert::ToInt32(numericUpDown1->Value) - 1]);
+		textBox7->Text = System::Convert::ToString(MassOfHubLoads[System::Convert::ToInt32(numericUpDown2->Value) - 1]);
 	}
 	return System::Void();
 }
