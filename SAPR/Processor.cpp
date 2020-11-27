@@ -1,7 +1,6 @@
 #include "PreProcessor.h"
 #include "Processor.h"
 #include "PostProcessor.h"
-#include <string>
 
 using namespace SAPR;
 
@@ -10,8 +9,8 @@ extern double LengthOfConstr;
 extern double** MassOfSticks;
 extern double* MassOfHubLoads;
 extern double* MassOfStickLoads;
-extern bool flagComeFromProcessor;
-extern std::string FilePath;
+extern bool LeftPillar;
+extern bool RightPillar;
 
 System::Void SAPR::Processor::timer1_Tick(System::Object^ sender, System::EventArgs^ e)
 {
@@ -29,8 +28,8 @@ System::Void SAPR::Processor::îòêðûòüÔàéëToolStripMenuItem_Click(System::Object^
 			StreamReader^ openFile = gcnew StreamReader(DataFileName);
 
 			NumberOfSticks = System::Convert::ToInt32(openFile->ReadLine());
-			openFile->ReadLine();
-			openFile->ReadLine();
+			LeftPillar = System::Convert::ToInt32(openFile->ReadLine());
+			RightPillar = System::Convert::ToInt32(openFile->ReadLine());
 
 			MassOfSticks = new double* [NumberOfSticks];
 			for (int i = 0; i < NumberOfSticks; i++) {

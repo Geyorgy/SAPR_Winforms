@@ -5,4 +5,5 @@ double LengthOfConstr;
 double** MassOfSticks;
 double* MassOfHubLoads;
 double* MassOfStickLoads;
-bool flagComeFromProcessor;
+bool LeftPillar = 0;
+bool RightPillar = 0;

@@ -2,7 +2,6 @@
 #include "Processor.h"
 #include "PostProcessor.h"
 #include <Windows.h>
-#include <string>
 
 using namespace SAPR;
 
@@ -14,12 +13,11 @@ extern double LengthOfConstr;
 extern double** MassOfSticks;
 extern double* MassOfHubLoads;
 extern double* MassOfStickLoads;
-extern bool flagComeFromProcessor;
-extern std::string FilePath;
+extern bool LeftPillar;
+extern bool RightPillar;
 
 bool flagTextChangedByNumeric = 0;
 bool flagTextChangedByMinus = 0;
-bool flagProgrammStarted = 1;
 
 [STAThread]
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
@@ -564,12 +562,10 @@ System::Void SAPR::PreProcessor::îòêðûòüToolStripMenuItem_Click(System::Object^ 
 
 		openFile->Close();
 
-		numericUpDown1->Value = 2;
-		numericUpDown1->Value = 1;
-		numericUpDown2->Value = 2;
-		numericUpDown2->Value = 1;
-		numericUpDown3->Value = 2;
-		numericUpDown3->Value = 1;
+		textBox1->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][2]);
+		textBox2->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][3]);
+		textBox4->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][4]);
+		textBox5->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][5]);
 	}
 	return System::Void();
 }
@@ -581,11 +577,12 @@ System::Void SAPR::PreProcessor::ñîõðàíèòüToolStripMenuItem_Click(System::Object
 
 	if (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 		if (saveFileDialog1->FileName->Length > 0) {
+			DataFileName = saveFileDialog1->FileName;
 			StreamWriter^ saveFile = gcnew StreamWriter(saveFileDialog1->FileName);
 
 			saveFile->WriteLine(NumberOfSticks);
-			saveFile->WriteLine(System::Convert::ToInt32(checkBox1->Checked));
-			saveFile->WriteLine(System::Convert::ToInt32(checkBox2->Checked));
+			saveFile->WriteLine(LeftPillar);
+			saveFile->WriteLine(RightPillar);
 			for (int i = 0; i < NumberOfSticks; i++) {
 				for (int j = 0; j < 6; j++) {
 					saveFile->WriteLine(MassOfSticks[i][j]);
@@ -629,18 +626,28 @@ System::Void SAPR::PreProcessor::PreProcessor_Load(System::Object^ sender, Syste
 {
 	this->textBox3->Text = System::Convert::ToString(NumberOfSticks);
 
-	if (this->DataFileName != nullptr) {
+	if (this->DataFileName != "SAPRDataPreProcessor.txt" && this->DataFileName != nullptr) {
 		SAPR::PreProcessor::îòêðûòüToolStripMenuItem_Click(this, e, this->DataFileName);
 	}
 
 
-	if (numericUpDown1->Enabled) {
-		numericUpDown1->Value = 2;
-		numericUpDown1->Value = 1;
-		numericUpDown2->Value = 2;
-		numericUpDown2->Value = 1;
-		numericUpDown3->Value = 2;
-		numericUpDown3->Value = 1;
+	if (numericUpDown3->Enabled) {
+		textBox1->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][2]);
+		textBox2->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][3]);
+		textBox4->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][4]);
+		textBox5->Text = System::Convert::ToString(MassOfSticks[System::Convert::ToInt32(numericUpDown3->Value) - 1][5]);
 	}
+	return System::Void();
+}
+
+System::Void SAPR::PreProcessor::checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	LeftPillar = System::Convert::ToInt32(checkBox1->Checked);
+	return System::Void();
+}
+
+System::Void SAPR::PreProcessor::checkBox2_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	RightPillar = System::Convert::ToInt32(checkBox2->Checked);
 	return System::Void();
 }
