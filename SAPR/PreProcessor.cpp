@@ -297,6 +297,7 @@ System::Void SAPR::PreProcessor::textBox3_TextChanged(System::Object^ sender, Sy
 	NumberOfSticks = System::Convert::ToInt32(textBox3->Text);
 
 	numericUpDown3->Maximum = NumberOfSticks;
+
 	if (!flagComeFromOutside) {
 		MassOfSticks = new double* [NumberOfSticks];
 		for (int i = 0; i < NumberOfSticks; i++) {
@@ -657,6 +658,7 @@ System::Void SAPR::PreProcessor::ïåðåéòèToolStripMenuItem1_Click(System::Object^
 
 System::Void SAPR::PreProcessor::PreProcessor_Load(System::Object^ sender, System::EventArgs^ e)
 {
+	this->textBox3->Text = "1";
 	this->textBox3->Text = System::Convert::ToString(NumberOfSticks);
 
 	if (this->DataFileName != "SAPRDataPreProcessor.txt" && this->DataFileName != nullptr) {

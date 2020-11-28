@@ -124,7 +124,7 @@ namespace SAPR {
 			// îòêðûòüÔàéëToolStripMenuItem
 			// 
 			this->îòêðûòüÔàéëToolStripMenuItem->Name = L"îòêðûòüÔàéëToolStripMenuItem";
-			this->îòêðûòüÔàéëToolStripMenuItem->Size = System::Drawing::Size(153, 22);
+			this->îòêðûòüÔàéëToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->îòêðûòüÔàéëToolStripMenuItem->Text = L"Îòêðûòü ôàéë";
 			this->îòêðûòüÔàéëToolStripMenuItem->Click += gcnew System::EventHandler(this, &Processor::îòêðûòüÔàéëToolStripMenuItem_Click);
 			// 
@@ -138,7 +138,7 @@ namespace SAPR {
 			// ïåðåéòèToolStripMenuItem1
 			// 
 			this->ïåðåéòèToolStripMenuItem1->Name = L"ïåðåéòèToolStripMenuItem1";
-			this->ïåðåéòèToolStripMenuItem1->Size = System::Drawing::Size(121, 22);
+			this->ïåðåéòèToolStripMenuItem1->Size = System::Drawing::Size(180, 22);
 			this->ïåðåéòèToolStripMenuItem1->Text = L"Ïåðåéòè";
 			this->ïåðåéòèToolStripMenuItem1->Click += gcnew System::EventHandler(this, &Processor::ïåðåéòèToolStripMenuItem1_Click);
 			// 
@@ -148,9 +148,9 @@ namespace SAPR {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(20, 366);
+			this->button1->Location = System::Drawing::Point(319, 466);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(734, 219);
+			this->button1->Size = System::Drawing::Size(99, 26);
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Ðàññ÷èòàòü";
 			this->button1->UseVisualStyleBackColor = true;
@@ -162,7 +162,7 @@ namespace SAPR {
 			this->RTBLogs->Location = System::Drawing::Point(20, 43);
 			this->RTBLogs->Name = L"RTBLogs";
 			this->RTBLogs->ReadOnly = true;
-			this->RTBLogs->Size = System::Drawing::Size(330, 317);
+			this->RTBLogs->Size = System::Drawing::Size(398, 317);
 			this->RTBLogs->TabIndex = 2;
 			this->RTBLogs->Text = L"";
 			// 

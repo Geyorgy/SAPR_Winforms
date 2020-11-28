@@ -97,7 +97,7 @@ namespace SAPR {
 	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown3;
 	private: System::Windows::Forms::Label^ label13;
-	private: System::Windows::Forms::ToolStripMenuItem^ çàäàòüÏåğåìåííûåToolStripMenuItem;
+
 
 
 
@@ -163,7 +163,6 @@ namespace SAPR {
 			this->ïğåïğîöåññîğToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->îòêğûòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ñîõğàíèòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->çàäàòüÏåğåìåííûåToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ïğîöåññîğToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ïåğåéòèToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ïîñòïğîöåññîğToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -488,9 +487,9 @@ namespace SAPR {
 			// ïğåïğîöåññîğToolStripMenuItem
 			// 
 			this->ïğåïğîöåññîğToolStripMenuItem->BackColor = System::Drawing::SystemColors::InactiveCaption;
-			this->ïğåïğîöåññîğToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+			this->ïğåïğîöåññîğToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
 				this->îòêğûòüToolStripMenuItem,
-					this->ñîõğàíèòüToolStripMenuItem, this->çàäàòüÏåğåìåííûåToolStripMenuItem
+					this->ñîõğàíèòüToolStripMenuItem
 			});
 			this->ïğåïğîöåññîğToolStripMenuItem->Name = L"ïğåïğîöåññîğToolStripMenuItem";
 			this->ïğåïğîöåññîğToolStripMenuItem->Size = System::Drawing::Size(101, 20);
@@ -499,22 +498,16 @@ namespace SAPR {
 			// îòêğûòüToolStripMenuItem
 			// 
 			this->îòêğûòüToolStripMenuItem->Name = L"îòêğûòüToolStripMenuItem";
-			this->îòêğûòüToolStripMenuItem->Size = System::Drawing::Size(183, 22);
+			this->îòêğûòüToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->îòêğûòüToolStripMenuItem->Text = L"Îòêğûòü ôàéë";
 			this->îòêğûòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &PreProcessor::îòêğûòüToolStripMenuItem_Click);
 			// 
 			// ñîõğàíèòüToolStripMenuItem
 			// 
 			this->ñîõğàíèòüToolStripMenuItem->Name = L"ñîõğàíèòüToolStripMenuItem";
-			this->ñîõğàíèòüToolStripMenuItem->Size = System::Drawing::Size(183, 22);
+			this->ñîõğàíèòüToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->ñîõğàíèòüToolStripMenuItem->Text = L"Ñîõğàíèòü ôàéë";
 			this->ñîõğàíèòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &PreProcessor::ñîõğàíèòüToolStripMenuItem_Click);
-			// 
-			// çàäàòüÏåğåìåííûåToolStripMenuItem
-			// 
-			this->çàäàòüÏåğåìåííûåToolStripMenuItem->Name = L"çàäàòüÏåğåìåííûåToolStripMenuItem";
-			this->çàäàòüÏåğåìåííûåToolStripMenuItem->Size = System::Drawing::Size(183, 22);
-			this->çàäàòüÏåğåìåííûåToolStripMenuItem->Text = L"Çàäàòü ïåğåìåííûå";
 			// 
 			// ïğîöåññîğToolStripMenuItem
 			// 
