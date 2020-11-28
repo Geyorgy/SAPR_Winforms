@@ -1,4 +1,5 @@
-﻿  PreProcessor.cpp
+﻿  PostProcessor.cpp
+  PreProcessor.cpp
 D:\User\Gosha\Documents\Repos\SAPR\SAPR\PreProcessor.cpp(76,44): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
 D:\User\Gosha\Documents\Repos\SAPR\SAPR\PreProcessor.cpp(86,118): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
 D:\User\Gosha\Documents\Repos\SAPR\SAPR\PreProcessor.cpp(86,105): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
@@ -242,5 +243,10 @@ D:\User\Gosha\Documents\Repos\SAPR\SAPR\PreProcessor.cpp(248,160): warning C4244
 D:\User\Gosha\Documents\Repos\SAPR\SAPR\PreProcessor.cpp(248,92): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
 D:\User\Gosha\Documents\Repos\SAPR\SAPR\PreProcessor.cpp(249,160): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
 D:\User\Gosha\Documents\Repos\SAPR\SAPR\PreProcessor.cpp(249,92): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+  Processor.cpp
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\Processor.cpp(302,53): warning C4244: инициализация: преобразование "double" в "size_t", возможна потеря данных
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\Processor.cpp(317,53): warning C4244: инициализация: преобразование "double" в "size_t", возможна потеря данных
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\Processor.cpp(332,57): warning C4244: инициализация: преобразование "double" в "size_t", возможна потеря данных
+  Создание кода...
   Global.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   SAPR.vcxproj -> D:\User\Gosha\Documents\Repos\SAPR\x64\Debug\SAPR.exe

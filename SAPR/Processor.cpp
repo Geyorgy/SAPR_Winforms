@@ -244,11 +244,12 @@ System::Void SAPR::Processor::button1_Click(System::Object^ sender, System::Even
 	}
 
 	MatrixB = new double[NumberOfSticks + 1];
-	MatrixB[0] = MassOfStickLoads[0] * MassOfSticks[0][2] / 2;
+
+	MatrixB[0] = MassOfHubLoads[0] + MassOfStickLoads[0] * MassOfSticks[0][2] / 2;
 	for (int i = 1; i < NumberOfSticks; i++) {
 		MatrixB[i] = MassOfStickLoads[i - 1] * MassOfSticks[i - 1][2] / 2 + MassOfHubLoads[i] + MassOfStickLoads[i] * MassOfSticks[i][2] / 2;
 	}
-	MatrixB[NumberOfSticks] = MassOfStickLoads[NumberOfSticks - 1] * MassOfSticks[NumberOfSticks - 1][2] / 2;
+	MatrixB[NumberOfSticks] = MassOfStickLoads[NumberOfSticks - 1] * MassOfSticks[NumberOfSticks - 1][2] / 2 + MassOfHubLoads[NumberOfSticks];
 
 	if (LeftPillar) {
 		MatrixA[0][0] = 1;

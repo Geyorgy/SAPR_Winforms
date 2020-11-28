@@ -124,7 +124,7 @@ namespace SAPR {
 			// îòêğûòüÔàéëToolStripMenuItem
 			// 
 			this->îòêğûòüÔàéëToolStripMenuItem->Name = L"îòêğûòüÔàéëToolStripMenuItem";
-			this->îòêğûòüÔàéëToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->îòêğûòüÔàéëToolStripMenuItem->Size = System::Drawing::Size(153, 22);
 			this->îòêğûòüÔàéëToolStripMenuItem->Text = L"Îòêğûòü ôàéë";
 			this->îòêğûòüÔàéëToolStripMenuItem->Click += gcnew System::EventHandler(this, &Processor::îòêğûòüÔàéëToolStripMenuItem_Click);
 			// 
@@ -138,7 +138,7 @@ namespace SAPR {
 			// ïåğåéòèToolStripMenuItem1
 			// 
 			this->ïåğåéòèToolStripMenuItem1->Name = L"ïåğåéòèToolStripMenuItem1";
-			this->ïåğåéòèToolStripMenuItem1->Size = System::Drawing::Size(180, 22);
+			this->ïåğåéòèToolStripMenuItem1->Size = System::Drawing::Size(121, 22);
 			this->ïåğåéòèToolStripMenuItem1->Text = L"Ïåğåéòè";
 			this->ïåğåéòèToolStripMenuItem1->Click += gcnew System::EventHandler(this, &Processor::ïåğåéòèToolStripMenuItem1_Click);
 			// 
