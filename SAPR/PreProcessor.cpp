@@ -98,7 +98,7 @@ System::Void SAPR::PreProcessor::button1_Click(System::Object^ sender, System::E
 	if (checkBox2->Checked) {
 		graph->DrawLine(pillarPen, 61 + LengthOfConstr, 61, 61 + LengthOfConstr, 141);
 		for (int i = 0; i < 21; i++) {
-			graph->DrawLine(pillarPen, 62 + System::Convert::ToInt32(LengthOfConstr), 61 + i * 4, 66 + System::Convert::ToInt32(LengthOfConstr), 59 + i * 4);
+			graph->DrawLine(pillarPen, 62 + System::Convert::ToInt32(LengthOfConstr), 61 + i * 4, 67 + System::Convert::ToInt32(LengthOfConstr), 59 + i * 4);
 		}
 	}
 	//Îòðèñîâêà ðàñïðåäåëåííûõ íàãðóçîê
@@ -118,7 +118,7 @@ System::Void SAPR::PreProcessor::button1_Click(System::Object^ sender, System::E
 				}
 			}
 			else {
-				for (int j = 5 * MassOfSticks[i][2]; j >= 0; j--)
+				for (int j = 0; j < 6 * MassOfSticks[i][2]; j++)
 				{
 					graph->DrawLine(BlueLoadsPen, MassOfSticks[i][0] + MassOfSticks[i][2] * LPixel - 12 - j * 20, 96, MassOfSticks[i][0] + MassOfSticks[i][2] * LPixel - 13 - j * 20, 96);
 					graph->DrawLine(BlueLoadsPen, MassOfSticks[i][0] + MassOfSticks[i][2] * LPixel - 13 - j * 20, 97, MassOfSticks[i][0] + MassOfSticks[i][2] * LPixel - 15 - j * 20, 97);
@@ -298,7 +298,7 @@ System::Void SAPR::PreProcessor::textBox3_TextChanged(System::Object^ sender, Sy
 
 	numericUpDown3->Maximum = NumberOfSticks;
 
-	if (!flagComeFromOutside) {
+	if (!flagComeFromOutside && NumberOfSticks != 0) {
 		MassOfSticks = new double* [NumberOfSticks];
 		for (int i = 0; i < NumberOfSticks; i++) {
 			MassOfSticks[i] = new double[6];
@@ -658,15 +658,32 @@ System::Void SAPR::PreProcessor::ïåðåéòèToolStripMenuItem1_Click(System::Object^
 
 System::Void SAPR::PreProcessor::PreProcessor_Load(System::Object^ sender, System::EventArgs^ e)
 {
-	this->textBox3->Text = "1";
+	//this->textBox3->Text = "1";
+	//flagComeFromOutside = 1;
 	this->textBox3->Text = System::Convert::ToString(NumberOfSticks);
+	//flagComeFromOutside = 1;
+
+	if (flagComeFromOutside && NumberOfSticks != 0) {
+		checkBox1->Enabled = true;
+		checkBox2->Enabled = true;
+		numericUpDown1->Enabled = true;
+		numericUpDown2->Enabled = true;
+		numericUpDown3->Enabled = true;
+		textBox1->Enabled = true;
+		textBox2->Enabled = true;
+		textBox4->Enabled = true;
+		textBox5->Enabled = true;
+		textBox6->Enabled = true;
+		textBox7->Enabled = true;
+		button1->Enabled = true;
+	}
 
 	if (this->DataFileName != "SAPRDataPreProcessor.txt" && this->DataFileName != nullptr) {
 		SAPR::PreProcessor::îòêðûòüToolStripMenuItem_Click(this, e, this->DataFileName);
 	}
 
 
-	if (numericUpDown3->Enabled) {
+	if (numericUpDown3->Enabled && NumberOfSticks != 0) {
 		checkBox1->Checked = LeftPillar;
 		checkBox2->Checked = RightPillar;
 

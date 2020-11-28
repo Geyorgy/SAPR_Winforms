@@ -287,11 +287,11 @@ namespace SAPR {
 			this->label5->AutoSize = true;
 			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label5->Location = System::Drawing::Point(567, 37);
+			this->label5->Location = System::Drawing::Point(556, 37);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(192, 16);
+			this->label5->Size = System::Drawing::Size(216, 16);
 			this->label5->TabIndex = 16;
-			this->label5->Text = L"Íàïğàâëåííûå íàãğóçêè";
+			this->label5->Text = L"Ñîñğåäîòî÷åííûå íàãğóçêè";
 			// 
 			// panel1
 			// 
@@ -498,14 +498,14 @@ namespace SAPR {
 			// îòêğûòüToolStripMenuItem
 			// 
 			this->îòêğûòüToolStripMenuItem->Name = L"îòêğûòüToolStripMenuItem";
-			this->îòêğûòüToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->îòêğûòüToolStripMenuItem->Size = System::Drawing::Size(165, 22);
 			this->îòêğûòüToolStripMenuItem->Text = L"Îòêğûòü ôàéë";
 			this->îòêğûòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &PreProcessor::îòêğûòüToolStripMenuItem_Click);
 			// 
 			// ñîõğàíèòüToolStripMenuItem
 			// 
 			this->ñîõğàíèòüToolStripMenuItem->Name = L"ñîõğàíèòüToolStripMenuItem";
-			this->ñîõğàíèòüToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->ñîõğàíèòüToolStripMenuItem->Size = System::Drawing::Size(165, 22);
 			this->ñîõğàíèòüToolStripMenuItem->Text = L"Ñîõğàíèòü ôàéë";
 			this->ñîõğàíèòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &PreProcessor::ñîõğàíèòüToolStripMenuItem_Click);
 			// 
