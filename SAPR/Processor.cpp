@@ -5,8 +5,9 @@
 
 using namespace SAPR;
 
+extern int LPixel;
+
 extern int NumberOfSticks;
-extern double LengthOfConstr;
 extern double** MassOfSticks;
 extern double* MassOfHubLoads;
 extern double* MassOfStickLoads;
@@ -17,9 +18,8 @@ double* MatrixB;
 double* MatrixDelta;
 double** MassOfU;
 
-double** MassOfNx;
-double** MassOfUx;
-double** MassOfSigmax;
+
+
 
 double* gauss(double** a, double* y, int n)
 {
@@ -186,6 +186,10 @@ System::Void SAPR::Processor::перейтиToolStripMenuItem1_Click(System::Object^ se
 {
 	this->Hide();
 	SAPR::PostProcessor PostProcessor;
+	PostProcessor.DataFileName = DataFileName;
+	PostProcessor.MassOfNx = MassOfNx;
+	PostProcessor.MassOfUx = MassOfUx;
+	PostProcessor.MassOfSigmax = MassOfSigmax;
 	PostProcessor.ShowDialog();
 	this->Close();
 	return System::Void();
@@ -299,9 +303,9 @@ System::Void SAPR::Processor::button1_Click(System::Object^ sender, System::Even
 
 	MassOfNx = new double* [NumberOfSticks];
 	for (int i = 0; i < NumberOfSticks; i++) {
-		MassOfNx[i] = new double[MassOfSticks[i][2] * 100 + 1];
-		for (int j = 0; j < MassOfSticks[i][2] * 100 + 1; j++){
-			MassOfNx[i][j] = MassOfSticks[i][5] * MassOfSticks[i][3] * (MassOfU[i][1] - MassOfU[i][0]) / MassOfSticks[i][2] + MassOfStickLoads[i] * MassOfSticks[i][2] * (1 - 2 * j / (100 * MassOfSticks[i][2])) / 2;
+		MassOfNx[i] = new double[MassOfSticks[i][2] * LPixel + 1];
+		for (int j = 0; j < MassOfSticks[i][2] * LPixel + 1; j++){
+			MassOfNx[i][j] = MassOfSticks[i][5] * MassOfSticks[i][3] * (MassOfU[i][1] - MassOfU[i][0]) / MassOfSticks[i][2] + MassOfStickLoads[i] * MassOfSticks[i][2] * (1 - 2 * j / (LPixel * MassOfSticks[i][2])) / 2;
 		}
 	}
 
@@ -314,9 +318,9 @@ System::Void SAPR::Processor::button1_Click(System::Object^ sender, System::Even
 
 	MassOfUx = new double* [NumberOfSticks];
 	for (int i = 0; i < NumberOfSticks; i++) {
-		MassOfUx[i] = new double[MassOfSticks[i][2] * 100 + 1];
-		for (int j = 0; j < MassOfSticks[i][2] * 100 + 1; j++) {
-			MassOfUx[i][j] = MassOfU[i][0] + j * (MassOfU[i][1] - MassOfU[i][0]) / (100 * MassOfSticks[i][2]) + MassOfStickLoads[i] * MassOfSticks[i][2] * MassOfSticks[i][2] * j * (1 - j / (100 * MassOfSticks[i][2])) / (100 * 2 * MassOfSticks[i][5] * MassOfSticks[i][3] * MassOfSticks[i][2]);
+		MassOfUx[i] = new double[MassOfSticks[i][2] * LPixel + 1];
+		for (int j = 0; j < MassOfSticks[i][2] * LPixel + 1; j++) {
+			MassOfUx[i][j] = MassOfU[i][0] + j * (MassOfU[i][1] - MassOfU[i][0]) / (LPixel * MassOfSticks[i][2]) + MassOfStickLoads[i] * MassOfSticks[i][2] * MassOfSticks[i][2] * j * (1 - j / (LPixel * MassOfSticks[i][2])) / (LPixel * 2 * MassOfSticks[i][5] * MassOfSticks[i][3] * MassOfSticks[i][2]);
 		}
 	}
 
@@ -329,8 +333,8 @@ System::Void SAPR::Processor::button1_Click(System::Object^ sender, System::Even
 
 	MassOfSigmax = new double* [NumberOfSticks];
 	for (int i = 0; i < NumberOfSticks; i++) {
-		MassOfSigmax[i] = new double[MassOfSticks[i][2] * 100 + 1];
-		for (int j = 0; j < MassOfSticks[i][2] * 100 + 1; j++) {
+		MassOfSigmax[i] = new double[MassOfSticks[i][2] * LPixel + 1];
+		for (int j = 0; j < MassOfSticks[i][2] * LPixel + 1; j++) {
 			MassOfSigmax[i][j] = MassOfNx[i][j] / MassOfSticks[i][3];
 		}
 	}
@@ -345,13 +349,10 @@ System::Void SAPR::Processor::button1_Click(System::Object^ sender, System::Even
 	RTBLogs->AppendText("Вычисление завершено\n\nПолученные значения:\n\n");
 	for (int i = 0; i < NumberOfSticks; i++){
 		RTBLogs->AppendText("Стержень №" + (i + 1) + "\n");
-		RTBLogs->AppendText("Nx(0) = " + MassOfNx[i][0] + "; Nx(" + MassOfSticks[i][2] + "L) = " + MassOfNx[i][System::Convert::ToInt32(MassOfSticks[i][2]) * 100] + "\n");
-		RTBLogs->AppendText("Ux(0) = " + MassOfUx[i][0] + "; Ux(" + MassOfSticks[i][2] + "L) = " + MassOfUx[i][System::Convert::ToInt32(MassOfSticks[i][2]) * 100] + "\n");
-		RTBLogs->AppendText("Sigma(0) = " + MassOfSigmax[i][0] + "; Sigma(" + MassOfSticks[i][2] + "L) = " + MassOfSigmax[i][System::Convert::ToInt32(MassOfSticks[i][2]) * 100] + "\n\n");
+		RTBLogs->AppendText("Nx(0) = " + MassOfNx[i][0] + "; Nx(" + MassOfSticks[i][2] + "L) = " + MassOfNx[i][System::Convert::ToInt32(MassOfSticks[i][2]) * LPixel] + "\n");
+		RTBLogs->AppendText("Ux(0) = " + MassOfUx[i][0] + "; Ux(" + MassOfSticks[i][2] + "L) = " + MassOfUx[i][System::Convert::ToInt32(MassOfSticks[i][2]) * LPixel] + "\n");
+		RTBLogs->AppendText("Sigma(0) = " + MassOfSigmax[i][0] + "; Sigma(" + MassOfSticks[i][2] + "L) = " + MassOfSigmax[i][System::Convert::ToInt32(MassOfSticks[i][2]) * LPixel] + "\n\n");
 	}
-
-
-
 
 	return System::Void();
 }

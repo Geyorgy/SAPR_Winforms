@@ -1,5 +1,7 @@
 using namespace System;
 
+int LPixel(120);
+
 int NumberOfSticks(0);
 double LengthOfConstr;
 double** MassOfSticks;

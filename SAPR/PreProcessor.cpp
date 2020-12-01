@@ -5,7 +5,7 @@
 
 using namespace SAPR;
 
-const int LPixel = 120;
+extern int LPixel;
 
 extern int NumberOfSticks;
 extern double LengthOfConstr;
@@ -337,7 +337,7 @@ System::Void SAPR::PreProcessor::textBox3_TextChanged(System::Object^ sender, Sy
 
 System::Void SAPR::PreProcessor::textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e)
 {
-	if (textBox1->Text == "-") {
+	if (textBox1->Text[0] == '-') {
 		MessageBox::Show("Значение длины стержня не может быть отрицательным", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		flagTextChangedByMinus = 1;
 		textBox1->Text = "0";
@@ -651,6 +651,7 @@ System::Void SAPR::PreProcessor::перейтиToolStripMenuItem1_Click(System::Object^
 {
 	this->Hide();
 	SAPR::PostProcessor PostProcessor;
+	PostProcessor.DataFileName = DataFileName;
 	PostProcessor.ShowDialog();
 	this->Close();
 	return System::Void();

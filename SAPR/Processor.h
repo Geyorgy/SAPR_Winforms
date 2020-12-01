@@ -17,6 +17,9 @@ namespace SAPR {
 	{
 	public:
 		String^ DataFileName = "SAPRDataPreProcessor.txt";
+		double** MassOfNx;
+		double** MassOfUx;
+		double** MassOfSigmax;
 	public:
 		Processor(void)
 		{
