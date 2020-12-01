@@ -1,0 +1,4 @@
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\Release\SAPR.PostProcessor.resources
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\Release\SAPR.PreProcessor.resources
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\Release\SAPR.Processor.resources
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\Release\SAPR.vcxproj.GenerateResource.cache

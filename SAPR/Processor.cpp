@@ -119,6 +119,9 @@ System::Void SAPR::Processor::открытьФайлToolStripMenuItem_Click(System::Object^
 			openFile->Close();
 		}
 	}
+	else {
+		return System::Void();
+	}
 
 	RTBLogs->AppendText("Данные введены\n");
 	RTBFile->AppendText("Количество стержней: " + System::Convert::ToString(NumberOfSticks) + "\n\n");

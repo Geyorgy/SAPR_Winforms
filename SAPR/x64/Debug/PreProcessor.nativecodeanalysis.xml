@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>D:\User\Gosha\Documents\Repos\SAPR\SAPR\</FILEPATH>
+      <FILENAME>PreProcessor.cpp</FILENAME>
+      <LINE>22</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Несогласованная аннотация для "WinMain": данный экземпляр содержит нет аннотаций. См. c:\program files (x86)\windows kits\10\include\10.0.18362.0\um\winbase.h(933). </DESCRIPTION>
+    <FUNCTION>WinMain</FUNCTION>
+    <DECORATED>?WinMain@@$$J0YAHPEAUHINSTANCE__@@0PEADH@Z</DECORATED>
+    <FUNCLINE>22</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

@@ -1,2 +1,7 @@
 C:\Users\Gosha\source\repos\SAPR\SAPR\x64\Release\SAPR.MainWindow.resources
 C:\Users\Gosha\source\repos\SAPR\SAPR\x64\Release\SAPR.vcxproj.GenerateResource.cache
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\x64\Release\SAPR.PostProcessor.resources
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\x64\Release\SAPR.PreProcessor.resources
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\x64\Release\SAPR.Processor.resources
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\x64\Release\SAPR.vcxproj.GenerateResource.cache
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\x64\Release\SAPR.vcxprojAssemblyReference.cache

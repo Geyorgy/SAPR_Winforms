@@ -1,8 +1,10 @@
 C:\Users\Gosha\source\repos\SAPR\SAPR\x64\Debug\SAPR.vcxproj.GenerateResource.cache
 C:\Users\Gosha\source\repos\SAPR\SAPR\x64\Debug\SAPR.vcxprojAssemblyReference.cache
 C:\Users\Gosha\source\repos\SAPR\SAPR\x64\Debug\SAPR.PreProcessor.resources
-D:\User\Gosha\Documents\Repos\SAPR\SAPR\x64\Debug\SAPR.vcxprojAssemblyReference.cache
 D:\User\Gosha\Documents\Repos\SAPR\SAPR\x64\Debug\SAPR.PostProcessor.resources
 D:\User\Gosha\Documents\Repos\SAPR\SAPR\x64\Debug\SAPR.PreProcessor.resources
 D:\User\Gosha\Documents\Repos\SAPR\SAPR\x64\Debug\SAPR.Processor.resources
 D:\User\Gosha\Documents\Repos\SAPR\SAPR\x64\Debug\SAPR.vcxproj.GenerateResource.cache
+D:\User\Gosha\Documents\Repos\SAPR\x64\Debug\SAPR.exe.lastcodeanalysissucceeded
+D:\User\Gosha\Documents\Repos\SAPR\x64\Debug\SAPR.exe.CodeAnalysisLog.xml
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\x64\Debug\NativeCodeAnalysis.read.1.tlog

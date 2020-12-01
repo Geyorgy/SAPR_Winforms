@@ -1,0 +1,6 @@
+﻿  Processor.cpp
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\Processor.cpp(309,56): warning C4244: инициализация: преобразование "double" в "unsigned int", возможна потеря данных
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\Processor.cpp(324,56): warning C4244: инициализация: преобразование "double" в "unsigned int", возможна потеря данных
+D:\User\Gosha\Documents\Repos\SAPR\SAPR\Processor.cpp(339,60): warning C4244: инициализация: преобразование "double" в "unsigned int", возможна потеря данных
+  Global.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  SAPR.vcxproj -> D:\User\Gosha\Documents\Repos\SAPR\Release\SAPR.exe
