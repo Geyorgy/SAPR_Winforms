@@ -522,11 +522,6 @@ D:\User\Gosha\Documents\Repos\SAPR\SAPR\Processor.cpp(309,56): warning C4244: и
 D:\User\Gosha\Documents\Repos\SAPR\SAPR\Processor.cpp(324,56): warning C4244: инициализация: преобразование "double" в "size_t", возможна потеря данных
 D:\User\Gosha\Documents\Repos\SAPR\SAPR\Processor.cpp(339,60): warning C4244: инициализация: преобразование "double" в "size_t", возможна потеря данных
   .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
-  Выполнение Code Analysis для C/C++...
   Создание кода...
   Global.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   SAPR.vcxproj -> D:\User\Gosha\Documents\Repos\SAPR\x64\Debug\SAPR.exe
-D:\User\Gosha\Documents\Repos\SAPR\SAPR\PreProcessor.cpp(22): warning C28251: Несогласованная аннотация для "WinMain": данный экземпляр содержит нет аннотаций. См. c:\program files (x86)\windows kits\10\include\10.0.18362.0\um\winbase.h(933). 
-  Running Code Analysis...
-MSBUILD : warning CA1016: Microsoft.Design : Добавьте атрибут AssemblyVersion в 'SAPR.exe'.
-  Code Analysis Complete -- 0 error(s), 1 warning(s)

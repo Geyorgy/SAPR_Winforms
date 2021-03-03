@@ -10,7 +10,6 @@ namespace SAPR {
 	using namespace System::Drawing;
 	using namespace System::IO;
 
-
 	/// <summary>
 	/// Сводка для CAD
 	/// </summary>
